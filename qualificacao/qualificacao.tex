@@ -1,0 +1,134 @@
+\documentclass[
+%	phd, %% Para teses de doutorado, OU
+	phdproposta, %% Para propostas de tese de doutorado
+	portugues %% Para documentos em português, OU
+%	english %% Para documentos em inglês
+]{modelo/ppgccufmg}
+
+%\usepackage[brazil]{babel} %% se o documento for em português, OU
+\usepackage[english]{babel} %% se o documento for em inglês
+%\usepackage[latin1]{inputenc}
+\usepackage{natbib}
+\usepackage{xcolor}
+\usepackage{lipsum}
+\usepackage[
+	colorlinks=true,
+	linkcolor=blue, %% Cor dos links do sumário
+	citecolor=red, %% Cor dos links das citações      
+	urlcolor=magenta, %% Cor das urls
+]{hyperref}
+
+\usepackage{framed}
+
+%% Exemplo de lista customizada ==================
+%% Para criar uma lista customizada (como Lista de Algoritmos, Lista de Exemplos) que ficará juntamente com as Lista de Figuras e Lista de Tabelas, execute os 3 comandos abaixo substituindo "algoritmos" pelo tipo de lista que estará criando. Para adicionar a lista ao documento, deverá passar o seguinte parâmetro no comando \ppgccufmg:
+%% \ppgccufmg{
+%% 		...
+%% 		listacustomizada={\listadealgoritmos}
+%% }
+\newfloat[chapter]{algoritmo}{lol}{Algoritmo}
+\newcommand{\listaalgoritmosname}{Lista de Algoritmos} %% Título da lista
+\newlistof{listadealgoritmos}{lol}{\listaalgoritmosname} %% O primeiro parâmetro é o nome da lista, e este deverá ser passado no parâmetro listacustomizada={\nomedalista}
+\newlistentry{algoritmo}{lol}{0} %% Nome do ambiente de cada algoritmo, e.g., \begin{algoritmo} ... \end{algoritmo}
+
+%% **** Caso não haja nenhuma lista adicional, os comandos acima podem ser apagados. ****
+%% ===============================================
+
+%% ALESSIO: RESUMO DE IDEIAS 
+\newtoggle{detalhes}  
+\global\togglefalse{detalhes}
+    
+\global\toggletrue{detalhes}
+\newcommand{\tresumo}[1]{\iftoggle{detalhes}{\textcolor{red}{\textbf{ --- #1 }}}\\}
+
+% \newcommand{\tresumo}[1]{\iftoggle{detalhes}{\textcolor{red}{\Longrightarrow\textbf{#1}}}\newline\newline}
+%% FIM 
+%% ALESSIO: TODO LIST 
+    \usepackage{enumitem,amssymb}
+    \newlist{todolist}{itemize}{2}
+    \setlist[todolist]{label=$\square$}
+    \usepackage{pifont}
+    \newcommand{\cmark}{\ding{51}}%
+    \newcommand{\xmark}{\ding{55}}%
+    \newcommand{\done}{\rlap{$\square$}{\raisebox{2pt}{\large\hspace{1pt}\cmark}}%
+    \hspace{-2.5pt}}
+    \newcommand{\wontfix}{\rlap{$\square$}{\large\hspace{1pt}\xmark}}
+%% FIM 
+
+
+\begin{document}
+	\ppgccufmg{
+		autor={Aléssio Miranda Júnior}, %% Autor(a)
+		titulo={Systems of Logic Based on Ordinals}, %% Título
+		cidade={Belo Horizonte},
+		ano={2023},
+		versao={Junho/2023}, %% Versão do documento
+		orientador={Vinícius Fernandes dos Santos}, %% Para masculino
+%		orientadora={Vinicius Fernandes dos Santos}, %% Para feminino
+%		coorientador={Ciclano}, %% Para masculino
+%		coorientadora={Ciclana}, %% Para feminino
+		fichacatalografica={fichaspdf/fichacatalografica.pdf},
+		folhadeaprovacao={fichaspdf/folhadeaprovacao.pdf},
+		resumo={capas/cap-0c-resumo.tex}, %% Resumo em português
+		abstracten={capas/cap-0d-abstract.tex}, %% Abstract em inglês
+		palavraschave={Matemática. Computação.}, %% Palavras-chave do resumo
+		keywords={Math. Computing.}, %% Palavras-chave do abstract
+		dedicatoria={capas/cap-0a-dedicatoria.tex}, %% Arquivo .tex contendo a dedicatória
+		agradecimentos={capas/cap-0b-agradecimentos.tex},
+		epigrafe={Truth and lie are opposite things.},
+		epigrafeautor={Unkown},
+		listadefiguras={sim}, %% Remova (ou comente) este parâmetro para remover a lista de figuras
+		listadetabelas={sim}, %% Remova (ou comente) este parâmetro para remover a lista de tabelas
+		listascustomizadas={\listadealgoritmos} %% Lista customizada (e.g., lista de algoritmos). 
+	}
+￼
+        \chapter[Introdução]{Introdução}
+        \label{introducao}
+        \input{qualificacao/cap1-introducao}
+￼
+        \chapter[Referêncial Teórico]{Referêncial Teórico}
+        \label{Referêncial Teórico}
+        \input{qualificacao/cap2-referencial}
+￼
+        \chapter[Trabalhos Relacionados]{Trabalhos Relacionados}
+        \label{Trabalhos Relacionados}
+        \input{qualificacao/cap3-trabalhos}
+￼
+        \chapter[Topico 1]{Topico 1}
+        \label{Topico 1}
+        \input{qualificacao/cap4-}
+￼
+        \chapter[Topico 2]{Topico 2}
+        \label{Topico 2}
+        \input{qualificacao/cap5-}
+￼
+        \chapter[Resultados e Análises]{Resultados e Análises}
+        \label{Resultados e Análises}
+        \input{qualificacao/cap6-resultados}
+￼
+        \chapter[Considerações Finais]{Considerações Finais}
+        \label{Considerações Finais}
+        \input{qualificacao/cap7-consideracoes}
+        0'
+	%% Referências
+%		\renewcommand\bibname{Referências} %% Trabalhos em português
+        \renewcommand\bibname{References} %% Trabalhos em inglês
+        \bibliographystyle{plain}
+        \bibliography{referencias}
+		
+        \begin{apendices}
+        
+            \chapter[Tarefas/Todo]{Tarefas/Todo}
+            \label{Tarefas/Todo}
+            \input{qualificacao/capx-1reuniao}
+        
+            \chapter{Um apêndice}
+                \lipsum[1]
+                
+            \chapter{Outro Apêndice}
+                \lipsum[2]
+                
+        \end{apendices}
+		
+\end{document}
+￼
